@@ -3,39 +3,12 @@ schema:
   file: ./src/schema.graphql
 dataSources:
   - kind: ethereum
-    name: ScannerRegistry
-    network: mumbai
-    source:
-      abi: ScannerRegistry
-      address: "0x569c785b4744E582c65A12827726FC03C8D08A4a"
-      startBlock: 21300000
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      entities:
-        - Scanner
-        - StakeThreshold
-      abis:
-        - name: ScannerRegistry
-          file: ./abis/ScannerRegistry.json
-      eventHandlers:
-        - event: ScannerUpdated(indexed uint256,indexed uint256,string)
-          handler: handleScannerUpdated
-        - event: ScannerEnabled(indexed uint256,indexed bool,uint8,bool)
-          handler: handleScannerEnabled
-        - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleTransfer
-        - event: ManagerEnabled(indexed uint256,indexed address,bool)
-          handler: handleManagerEnabled
-      file: ./src/datasources/ScannerRegistry.ts
-  - kind: ethereum
     name: AgentRegistry
-    network: mumbai
+    network: matic
     source:
       abi: AgentRegistry
-      address: "0x4519Eaeb9A5c1a9d870Fe35452E54AD04E6e8428"
-      startBlock: 21300000
+      address: "0x61447385B019187daa48e91c55c02AF1F1f3F863"
+      startBlock: 20187154
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -55,11 +28,11 @@ dataSources:
       file: ./src/datasources/AgentRegistry.ts
   - kind: ethereum
     name: Dispatcher
-    network: mumbai
+    network: matic
     source:
       abi: Dispatcher
-      address: "0x485F9c35d90E639f5B591DA5281199Ae59A9794F"
-      startBlock: 21300000
+      address: "0xd46832F3f8EA8bDEFe5316696c0364F01b31a573"
+      startBlock: 20187154
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -76,11 +49,11 @@ dataSources:
       file: ./src/datasources/Dispatcher.ts
   - kind: ethereum
     name: FortaStaking
-    network: mumbai
+    network: matic
     source:
       abi: FortaStaking
-      address: "0x64d5192F03bD98dB1De2AA8B4abAC5419eaC32CE"
-      startBlock: 21300000
+      address: "0xd2863157539b1D11F39ce23fC4834B62082F6874"
+      startBlock: 20187154
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -109,11 +82,11 @@ dataSources:
       file: ./src/datasources/FortaStaking.ts
   - kind: ethereum
     name: ScannerPoolRegistry
-    network: mumbai
+    network: matic
     source:
       abi: ScannerPoolRegistry
-      address: "0x9BBEBf9CB94666464D8a5978363B4943D36A05E4"
-      startBlock: 29281360
+      address: "0x90ff9c193d6714e0e7a923b2bd481fb73fec731d"
+      startBlock: 20187154
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -136,11 +109,11 @@ dataSources:
       file: ./src/datasources/ScannerPoolRegistry.ts
   - kind: ethereum
     name: RewardsDistributor
-    network: mumbai
+    network: matic
     source:
       abi: RewardsDistributor
-      address: "0x404afc59Cacd74A28d0D5651460Cc950b42FAf08"
-      startBlock: 21300000
+      address: "0xf7239f26b79145297737166b0c66f4919af9c507"
+      startBlock: 20187154
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -155,16 +128,17 @@ dataSources:
           handler: handleSetDelegationFee
         - event: Rewarded(indexed uint8,indexed uint256,uint256,uint256)
           handler: handleRewardEvent
-        - event: ClaimedRewards(indexed uint8,indexed uint256,indexed address,uint256,uint256)
+        - event: ClaimedRewards(indexed uint8,indexed uint256,indexed
+            address,uint256,uint256)
           handler: handleClaimedRewards
       file: ./src/datasources/RewardsDistributor.ts
   - kind: ethereum
     name: StakeAllocator
-    network: mumbai
+    network: matic
     source:
       abi: StakeAllocator
-      address: "0x698A6400dE3865fC9E8A6dB22302AAb3372Cebd9"
-      startBlock: 21300000
+      address: "0x5B73756e637A77Fa52e5Ce71EC6189A4C775c6FA"
+      startBlock: 20187154
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6

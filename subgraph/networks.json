@@ -1,62 +1,80 @@
 {
   "matic": {
-    "ScannerRegistry": {
-        "address": "0xbF2920129f83d75DeC95D97A879942cCe3DcD387",
-        "startBlock": 20187154
-      },
-      "AgentRegistry": {
-          "address": "0x61447385B019187daa48e91c55c02AF1F1f3F863",
-          "startBlock": 20187154
-      },
-      "Dispatcher": {
-          "address": "0xd46832F3f8EA8bDEFe5316696c0364F01b31a573",
-          "startBlock": 20187154
-      },
-      "FortaStaking": {
-          "address": "0xd2863157539b1D11F39ce23fC4834B62082F6874",
-          "startBlock": 20187154
-      },
-      "ScannerPoolRegistry": {
-          "address": "0x90ff9c193d6714e0e7a923b2bd481fb73fec731d",
-          "startBlock": 20187154
-      },
-      "RewardsDistributor": {
-          "address": "0xf7239f26b79145297737166b0c66f4919af9c507",
-          "startBlock": 20187154
-      },
-      "StakeAllocator": {
-          "address": "0x5B73756e637A77Fa52e5Ce71EC6189A4C775c6FA",
-          "startBlock": 20187154
-      }
-  },
-  "mumbai": {
-    "ScannerRegistry": {
-      "address": "0x569c785b4744E582c65A12827726FC03C8D08A4a",
-      "startBlock": 21300000
-    },
     "AgentRegistry": {
-        "address": "0x4519Eaeb9A5c1a9d870Fe35452E54AD04E6e8428",
-        "startBlock": 21300000
+      "address": "0x61447385B019187daa48e91c55c02AF1F1f3F863",
+      "startBlock": 20187154
     },
     "Dispatcher": {
-        "address": "0x485F9c35d90E639f5B591DA5281199Ae59A9794F",
-        "startBlock": 21300000
+      "address": "0xd46832F3f8EA8bDEFe5316696c0364F01b31a573",
+      "startBlock": 20187154
     },
     "FortaStaking": {
-        "address": "0x64d5192F03bD98dB1De2AA8B4abAC5419eaC32CE",
-        "startBlock": 21300000
+      "address": "0xd2863157539b1D11F39ce23fC4834B62082F6874",
+      "startBlock": 20187154
     },
     "ScannerPoolRegistry": {
-        "address": "0x9BBEBf9CB94666464D8a5978363B4943D36A05E4",
-        "startBlock": 29281360
+      "address": "0x90ff9c193d6714e0e7a923b2bd481fb73fec731d",
+      "startBlock": 20187154
     },
     "RewardsDistributor": {
-        "address": "0x404afc59Cacd74A28d0D5651460Cc950b42FAf08",
-        "startBlock": 21300000
+      "address": "0xf7239f26b79145297737166b0c66f4919af9c507",
+      "startBlock": 20187154
     },
     "StakeAllocator": {
-        "address": "0x698A6400dE3865fC9E8A6dB22302AAb3372Cebd9",
-        "startBlock": 21300000
+      "address": "0x5B73756e637A77Fa52e5Ce71EC6189A4C775c6FA",
+      "startBlock": 20187154
+    }
+  },
+  "mumbai": {
+    "AgentRegistry": {
+      "address": "0x4519Eaeb9A5c1a9d870Fe35452E54AD04E6e8428",
+      "startBlock": 21300000
+    },
+    "Dispatcher": {
+      "address": "0x485F9c35d90E639f5B591DA5281199Ae59A9794F",
+      "startBlock": 21300000
+    },
+    "FortaStaking": {
+      "address": "0x64d5192F03bD98dB1De2AA8B4abAC5419eaC32CE",
+      "startBlock": 21300000
+    },
+    "ScannerPoolRegistry": {
+      "address": "0x9BBEBf9CB94666464D8a5978363B4943D36A05E4",
+      "startBlock": 29281360
+    },
+    "RewardsDistributor": {
+      "address": "0x404afc59Cacd74A28d0D5651460Cc950b42FAf08",
+      "startBlock": 21300000
+    },
+    "StakeAllocator": {
+      "address": "0x698A6400dE3865fC9E8A6dB22302AAb3372Cebd9",
+      "startBlock": 21300000
+    }
+  },
+  "base-sepolia": {
+    "AgentRegistry": {
+      "address": "0x0C8B8DeC21Aa72179e8C4703a9B55d9Db061D423",
+      "startBlock": 8150713
+    },
+    "Dispatcher": {
+      "address": "0x452C7044B9977de45ed7621ba0Bb77E312663157",
+      "startBlock": 8150713
+    },
+    "FortaStaking": {
+      "address": "0x1ed86971E4C4f3d13b6b8030D80C7D609de7139c",
+      "startBlock": 8150713
+    },
+    "ScannerPoolRegistry": {
+      "address": "0x786e4446bB39F5480310FE98c48d2d5e6129A4cC",
+      "startBlock": 8150713
+    },
+    "RewardsDistributor": {
+      "address": "0x414E8777Df3e3Af4Ed3e4bA9A2266779F86558e4",
+      "startBlock": 8150713
+    },
+    "StakeAllocator": {
+      "address": "0xc054a3DABfFEb0279E62669FB699a33D4cC5fC62",
+      "startBlock": 8150713
     }
   }
 }

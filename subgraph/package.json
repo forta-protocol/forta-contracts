@@ -5,10 +5,10 @@
     "prepare:codegen": "graph codegen subgraph.yaml",
     "prepare:compile": "graph build subgraph.yaml --network matic",
     "prepare-dev:codegen": "graph codegen subgraph.yaml",
-    "prepare-dev:compile": "graph build subgraph.yaml --network mumbai",
+    "prepare-dev:compile": "graph build subgraph.yaml --network base-sepolia",
     "prepare": "yarn prepare:codegen && yarn prepare:compile",
     "prepare-dev": "yarn prepare-dev:codegen && yarn prepare-dev:compile",
-    "deploy-dev": "graph deploy --node https://api.graph-eu.p2pify.com/765768b776199f59bb7f1bf37253e73f/deploy --ipfs https://api.graph-eu.p2pify.com/765768b776199f59bb7f1bf37253e73f/ipfs forta-dev",
+    "deploy-dev": "graph build subgraph.yaml --network base-sepolia",
     "deploy": "graph deploy -l v0.0.1 --node https://api.graph-eu.p2pify.com/3e3485fa2703678549290ce52f45ef9c/deploy --ipfs https://api.graph-eu.p2pify.com/3e3485fa2703678549290ce52f45ef9c/ipfs forta-b",
     "deploy-theGraph-a": "graph deploy --network matic --node https://api.thegraph.com/deploy/ forta-network/forta-network-a",
     "deploy-theGraph-b": "graph deploy --network matic --node https://api.thegraph.com/deploy/ forta-network/forta-network-b",
@@ -22,7 +22,8 @@
     "@graphprotocol/graph-cli": "0.49.0",
     "@graphprotocol/graph-ts": "0.27.0",
     "matchstick-as": "^0.5.0",
-    "source-map-support": "^0.5.21"
+    "source-map-support": "^0.5.21",
+    "yaml": "^2.4.1"
   },
   "devDependencies": {
     "typescript": "^4.9.5"

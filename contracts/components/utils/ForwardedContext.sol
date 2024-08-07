@@ -13,7 +13,7 @@ abstract contract ForwardedContext is ContextUpgradeable {
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor(address trustedForwarder) {
         // WARNING: do not set this address to other than a deployed Forwarder instance.
-        // Forwarder is critical infrastructure with priviledged address, it is safe for the limited
+        // Forwarder is critical infrastructure with privileged address, it is safe for the limited
         // functionality of the Forwarder contract, any other EOA or contract could be a security issue.
         _trustedForwarder = trustedForwarder;
     }

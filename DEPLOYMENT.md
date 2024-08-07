@@ -140,7 +140,7 @@ Once the release is defined, create a pull request from the `release/X.Y(.Z)` br
     - deployments: folder with general info of the contracts deployed in several networks.
         - <network_id>.json : info on the current state of the contracts deployed on the network
         - multisigs.json: info on the admin multisigs on each network
-        - relayers.json: info on the (usually) priviledged EOAs needed. Tipically OZ Defender relayers.
+        - relayers.json: info on the (usually) privileged EOAs needed. Tipically OZ Defender relayers.
 ```
 
 # Config files for pre-defined tasks
@@ -152,7 +152,7 @@ These json files hold the info that the tasks will use to interact with the cont
 To make the config files less error prone, there are some parameter substitutions allowed:
 - `deployment.<contract-key>`: address of a deployed contract/proxy found in `/releases/deployments/<network>.json`. Example `deployment.access-manager`. This could reference contracts being deployed in the same release, as long as they precede this reference in the config file (previous entries).
 - `deployment.multisig`: admin multisig address for the network as defined in `/releases/deployments/multisigs.json`.
-- `deployment.relayer`: priviledged EOAs (usually OZ Defender Relayers) for the network as defined in `/releases/deployments/relayers.json`.
+- `deployment.relayer`: privileged EOAs (usually OZ Defender Relayers) for the network as defined in `/releases/deployments/relayers.json`.
 - `roles.<IDENTIFIER_ROLE>`: keccack256 hash of the identifier of a role, as defined in `Roles.sol` or the Forta token contracts.
 - **NOTE:** All parameters must be strings, numbers included, to not trigger overflow errors on BigNumber conversion.
 

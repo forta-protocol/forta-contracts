@@ -1,5 +1,5 @@
 # Forta Subgraph 
-The Forta subgraph is currently hosted on chainstack (both dev and production enviornments) and provides visibility to on-chain events around the forta protocol such as staking, rewards, node pools, etc.
+The Forta subgraph is currently hosted on chainstack (both dev and production environments) and provides visibility to on-chain events around the forta protocol such as staking, rewards, node pools, etc.
 
 ## Deployment
 

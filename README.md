@@ -159,7 +159,7 @@ Implemented by [Raúl Martínez](https://github.com/Ramarti) Based in the concep
 
 ### Trigger admin actions:
 
-Also covered in the (above pipeline!)[https://github.com/forta-network/forta-contracts/blob/master/DEPLOYMENT_AND_ADMIN_ACTIONS.md]
+Also covered in the [above pipeline!](https://github.com/forta-network/forta-contracts/blob/master/DEPLOYMENT_AND_ADMIN_ACTIONS.md)
 
 ## Development of upgrades.
 
@@ -210,4 +210,4 @@ Some other parts of the system do not support this feature in ABIs yet. To gener
 
 ## Bug Bounty
 
-We have a [bug bounty program on Immunefi](https://immunefi.com/bounty/forta). Please report any security issues you find through the Immunefi dashboard, or reach out to (tech@forta.org)[mailto:tech@forta.org]
+We have a [bug bounty program on Immunefi](https://immunefi.com/bounty/forta). Please report any security issues you find through the Immunefi dashboard, or reach out to [tech@forta.org](mailto:tech@forta.org)

@@ -106,7 +106,7 @@ Contracts that allow vested token holders to stake on `FortaStaking`
 
 # Audits
 
-[Openzeppelin](https://github.com/forta-network/forta-contracts/blob/readme/audits/Forta%20Audit%20-%20Shared%20Report.pdf)
+[OpenZeppelin](https://github.com/forta-network/forta-contracts/blob/readme/audits/Forta%20Audit%20-%20Shared%20Report.pdf)
 
 # Development
 

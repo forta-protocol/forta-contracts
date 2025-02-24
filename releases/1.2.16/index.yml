@@ -1,0 +1,7 @@
+title: FORT Token Upgrade - mint removal
+network: sepolia
+deploy: deploy-and-prepare-upgrade 1.2.16
+verify: verify-deployed
+finish: propose-admin
+description: |
+  ## Deploy new implementation of FORT to remove minting functionality.

@@ -4,6 +4,7 @@ const { expect } = require('chai');
 const { prepare } = require('../fixture');
 const { BigNumber } = require('@ethersproject/bignumber');
 const { signERC712ScannerRegistration } = require('../../scripts/utils/scannerRegistration');
+const contractHelpers = require('../../scripts/utils/contractHelpers');
 
 let SCANNER_ADDRESS_1, scanner1Registration, scanner1Signature, SCANNER_ADDRESS_2, scanner2Registration, scanner2Signature, verifyingContractInfo;
 describe('Scanner Pool Registry', function () {
@@ -11,9 +12,9 @@ describe('Scanner Pool Registry', function () {
     prepare({ stake: { scanners: { min: '100', max: '500', activated: true } } });
 
     beforeEach(async function () {
-        await this.token.connect(this.accounts.minter).mint(this.accounts.user1.address, ethers.utils.parseEther('1000'));
-        await this.token.connect(this.accounts.minter).mint(this.accounts.user2.address, ethers.utils.parseEther('1000'));
-        await this.token.connect(this.accounts.minter).mint(this.accounts.user3.address, ethers.utils.parseEther('1000'));
+        await contractHelpers.overwriteUserTokenBalance(this.accounts.user1.address, ethers.utils.parseEther('1000'), this.token.address);
+        await contractHelpers.overwriteUserTokenBalance(this.accounts.user2.address, ethers.utils.parseEther('1000'), this.token.address);
+        await contractHelpers.overwriteUserTokenBalance(this.accounts.user3.address, ethers.utils.parseEther('1000'), this.token.address);
 
         await this.token.connect(this.accounts.user1).approve(this.staking.address, ethers.constants.MaxUint256);
         await this.token.connect(this.accounts.user2).approve(this.staking.address, ethers.constants.MaxUint256);
@@ -387,9 +388,9 @@ describe('Scanner Pool Registry', function () {
             await this.staking.connect(this.accounts.user1).deposit(2, 1, '100');
             await this.scannerPools.connect(this.accounts.user1).registerScannerNode(scanner1Registration, scanner1Signature);
 
-            await this.token.connect(this.accounts.minter).mint(this.accounts.manager.address, ethers.utils.parseEther('1000'));
+            await contractHelpers.overwriteUserTokenBalance(this.accounts.manager.address, ethers.utils.parseEther('1000'), this.token.address);
             await this.token.connect(this.accounts.manager).approve(this.staking.address, ethers.constants.MaxUint256);
-            await this.token.connect(this.accounts.minter).mint(this.accounts.user3.address, ethers.utils.parseEther('1000'));
+            await contractHelpers.overwriteUserTokenBalance(this.accounts.user3.address, ethers.utils.parseEther('1000'), this.token.address);
             await this.token.connect(this.accounts.user3).approve(this.staking.address, ethers.constants.MaxUint256);
         });
 

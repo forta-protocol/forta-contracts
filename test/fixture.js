@@ -48,8 +48,6 @@ function prepare(config = {}) {
                 this.access.connect(this.accounts.admin).grantRole(this.roles.STAKING_CONTRACT, this.contracts.staking.address),
                 this.access.connect(this.accounts.admin).grantRole(this.roles.ALLOCATOR_CONTRACT, this.contracts.stakeAllocator.address),
                 this.access.connect(this.accounts.admin).grantRole(this.roles.MIGRATION_EXECUTOR, this.accounts.manager.address),
-                this.token.connect(this.accounts.admin).grantRole(this.roles.MINTER, this.accounts.minter.address),
-                this.otherToken.connect(this.accounts.admin).grantRole(this.roles.MINTER, this.accounts.minter.address),
             ].map((txPromise) => txPromise.then((tx) => tx.wait()).catch(() => {}))
         );
 
@@ -58,8 +56,7 @@ function prepare(config = {}) {
         // Prep for tests that need minimum stake
         if (config.stake) {
             if (!config.adminAsChildChainManagerProxy) {
-                //Bridged FORT does not have mint()
-                await this.token.connect(this.accounts.minter).mint(this.accounts.user1.address, ethers.utils.parseEther('10000'));
+                await contractHelpers.overwriteUserTokenBalance(this.accounts.user1.address, ethers.utils.parseEther('10000'), this.token.address);
             }
             this.accounts.staker = this.accounts.user1;
             await this.token.connect(this.accounts.staker).approve(this.staking.address, ethers.constants.MaxUint256);

@@ -4,6 +4,7 @@ const { prepare } = require('../fixture');
 const { subjectToActive, subjectToInactive } = require('../../scripts/utils/staking.js');
 const { signERC712ScannerRegistration } = require('../../scripts/utils/scannerRegistration');
 const helpers = require('@nomicfoundation/hardhat-network-helpers');
+const contractHelpers = require('../../scripts/utils/contractHelpers');
 
 const subjects = [
     [ethers.BigNumber.from(ethers.utils.id('135a782d-c263-43bd-b70b-920873ed7e9d')), 1], // Agent id, agent type
@@ -34,9 +35,9 @@ describe('Forta Staking General', function () {
         },
     });
     beforeEach(async function () {
-        await this.token.connect(this.accounts.minter).mint(this.accounts.user1.address, ethers.utils.parseEther('1000'));
-        await this.token.connect(this.accounts.minter).mint(this.accounts.user2.address, ethers.utils.parseEther('1000'));
-        await this.token.connect(this.accounts.minter).mint(this.accounts.user3.address, ethers.utils.parseEther('1000'));
+        await contractHelpers.overwriteUserTokenBalance(this.accounts.user1.address, ethers.utils.parseEther('1000'), this.token.address);
+        await contractHelpers.overwriteUserTokenBalance(this.accounts.user2.address, ethers.utils.parseEther('1000'), this.token.address);
+        await contractHelpers.overwriteUserTokenBalance(this.accounts.user3.address, ethers.utils.parseEther('1000'), this.token.address);
 
         await this.token.connect(this.accounts.user1).approve(this.staking.address, ethers.constants.MaxUint256);
         await this.token.connect(this.accounts.user2).approve(this.staking.address, ethers.constants.MaxUint256);
@@ -306,7 +307,7 @@ describe('Forta Staking General', function () {
         });
 
         it('sweep unrelated token', async function () {
-            await expect(this.otherToken.connect(this.accounts.minter).mint(this.staking.address, '42')).to.be.not.reverted;
+            await contractHelpers.overwriteUserTokenBalance(this.staking.address, ethers.utils.parseUnits('42', 'wei'), this.otherToken.address);
 
             expect(await this.token.balanceOf(this.staking.address)).to.be.equal('120');
             expect(await this.otherToken.balanceOf(this.staking.address)).to.be.equal('42');
@@ -344,7 +345,7 @@ describe('Forta Staking General', function () {
 
     describe('attack scenario', function () {
         it('dusting', async function () {
-            await this.token.connect(this.accounts.minter).mint(this.rewardsDistributor.address, ethers.utils.parseEther('1000'));
+            await contractHelpers.overwriteUserTokenBalance(this.rewardsDistributor.address, ethers.utils.parseEther('1000'), this.token.address);
 
             const network = await ethers.provider.getNetwork();
             this.accounts.getAccount('scanner');

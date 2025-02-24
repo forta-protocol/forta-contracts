@@ -4,6 +4,7 @@ const { expect } = require('chai');
 const { prepare } = require('../fixture');
 const { subjectToActive, subjectToInactive } = require('../../scripts/utils/staking.js');
 const { signERC712ScannerRegistration } = require('../../scripts/utils/scannerRegistration');
+const contractHelpers = require('../../scripts/utils/contractHelpers');
 
 const subjects = [
     [ethers.BigNumber.from(ethers.utils.id('135a782d-c263-43bd-b70b-920873ed7e9d')), 1], // Agent id, agent type
@@ -39,10 +40,10 @@ describe('Staking Rewards', function () {
         },
     });
     beforeEach(async function () {
-        await this.token.connect(this.accounts.minter).mint(this.accounts.user1.address, '1000');
-        await this.token.connect(this.accounts.minter).mint(this.accounts.user2.address, '1000');
-        await this.token.connect(this.accounts.minter).mint(this.accounts.user3.address, '1000');
-        await this.token.connect(this.accounts.minter).mint(this.contracts.rewardsDistributor.address, '100000000');
+        await contractHelpers.overwriteUserTokenBalance(this.accounts.user1.address, ethers.utils.parseUnits('1000', 'wei'), this.token.address);
+        await contractHelpers.overwriteUserTokenBalance(this.accounts.user2.address, ethers.utils.parseUnits('1000', 'wei'), this.token.address);
+        await contractHelpers.overwriteUserTokenBalance(this.accounts.user3.address, ethers.utils.parseUnits('1000', 'wei'), this.token.address);
+        await contractHelpers.overwriteUserTokenBalance(this.contracts.rewardsDistributor.address, ethers.utils.parseUnits('100000000', 'wei'), this.token.address);
 
         await this.token.connect(this.accounts.user1).approve(this.staking.address, ethers.constants.MaxUint256);
         await this.token.connect(this.accounts.user2).approve(this.staking.address, ethers.constants.MaxUint256);

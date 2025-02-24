@@ -4,6 +4,7 @@ const { expect } = require('chai');
 const { prepare, deploy } = require('../fixture');
 const { subjectToActive, subjectToInactive } = require('../../scripts/utils/staking.js');
 const loadEnv = require('../../scripts/loadEnv');
+const contractHelpers = require('../../scripts/utils/contractHelpers');
 
 const prepareCommit = (...args) => ethers.utils.solidityKeccak256(['bytes32', 'address', 'string', 'uint256[]'], args);
 
@@ -259,9 +260,9 @@ describe('Upgrades testing', function () {
             await this.scanners.connect(this.accounts.manager).setStakeThreshold(STAKING_PARAMS, 1);
 
             this.access.connect(this.accounts.admin).grantRole(this.roles.SLASHER, this.accounts.admin.address),
-                await this.token.connect(this.accounts.minter).mint(this.accounts.user1.address, '100000000');
-            await this.token.connect(this.accounts.minter).mint(this.accounts.user2.address, '100000000');
-            await this.token.connect(this.accounts.minter).mint(this.accounts.admin.address, '100000000');
+            await contractHelpers.overwriteUserTokenBalance(this.accounts.user1.address, ethers.utils.parseUnits('100000000', 'wei'), this.token.address);
+            await contractHelpers.overwriteUserTokenBalance(this.accounts.user2.address, ethers.utils.parseUnits('100000000', 'wei'), this.token.address);
+            await contractHelpers.overwriteUserTokenBalance(this.accounts.admin.address, ethers.utils.parseUnits('100000000', 'wei'), this.token.address);
 
             await this.token.connect(this.accounts.user1).approve(this.staking.address, ethers.constants.MaxUint256);
             await this.token.connect(this.accounts.user2).approve(this.staking.address, ethers.constants.MaxUint256);

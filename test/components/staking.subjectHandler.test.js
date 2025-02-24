@@ -1,6 +1,7 @@
 const { ethers, network, upgrades } = require('hardhat');
 const { expect } = require('chai');
 const { prepare } = require('../fixture');
+const contractHelpers = require('../../scripts/utils/contractHelpers');
 
 const AGENT_SUBJECT = 1;
 
@@ -10,7 +11,7 @@ describe('Forta Staking Parameters', function () {
     prepare();
 
     beforeEach(async function () {
-        await this.token.connect(this.accounts.minter).mint(this.accounts.user1.address, ethers.utils.parseEther('1000'));
+        await contractHelpers.overwriteUserTokenBalance(this.accounts.user1.address, ethers.utils.parseEther('1000'), this.token.address);
         await this.token.connect(this.accounts.user1).approve(this.staking.address, ethers.constants.MaxUint256);
     });
 

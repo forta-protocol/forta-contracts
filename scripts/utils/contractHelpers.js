@@ -155,6 +155,30 @@ const getBlockExplorerDomain = (hre) => {
     }
 };
 
+// Minting workaround, due `mint()` removal
+// Manually overwrite token balance of `userAddress` to `tokenAmount`
+async function overwriteUserTokenBalance(userAddress, tokenAmount, tokenAddress) {
+    // To derive `balancesMappingStorageSlot`:
+    // 1. Run `cat artifacts/build-info/*.json | jq '.output.contracts."contracts/token/Forta.sol".Forta.storageLayout'`
+    // 2. Look for the { "label": "_balances" , "slot": <value> } (i.e. `_balances` mapping)
+    // 3. Set `balancesMappingStorageSlot` equal to the value for `"slot"`
+    const balancesMappingStorageSlot = 151;
+    // Compute the slot for `userAddress` specific `_balances` entry:
+    // keccak256(abi.encode(address, mappingSlot))
+    const userBalanceSlotKey = (new ethers.utils.AbiCoder()).encode(
+        ["address", "uint256"],
+        [userAddress, balancesMappingStorageSlot]
+    );
+    const userBalanceStorageSlot = ethers.utils.keccak256(userBalanceSlotKey);
+    const tokenAmountInHex = ethers.utils.hexValue(tokenAmount);
+
+    await network.provider.send("hardhat_setStorageAt", [
+        tokenAddress,
+        userBalanceStorageSlot,
+        ethers.utils.hexZeroPad(tokenAmountInHex, 32),
+    ]);
+}
+
 module.exports = {
     getDefaultProvider,
     getDefaultDeployer,
@@ -168,4 +192,5 @@ module.exports = {
     tryFetchProxy,
     getContractVersion,
     getBlockExplorerDomain,
+    overwriteUserTokenBalance
 };

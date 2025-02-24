@@ -31,10 +31,18 @@ jobs:
             - run: yarn install --frozen-lockfile
 
             - name: Compile contracts
-              run: yarn compile
+              run: |
+                yarn compile
+                if [ ! -d "artifacts" ]; then
+                  echo "Artifacts directory is missing!"
+                  exit 1
+                fi
+
+            - name: Debug artifacts before upload
+              run: ls -R artifacts || echo "No artifacts found"
 
             - name: Save build artifacts
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: contract-artifacts
                   path: |
@@ -57,7 +65,7 @@ jobs:
             - run: yarn install --frozen-lockfile
 
             - name: Get build artifacts
-              uses: actions/download-artifact@v3
+              uses: actions/download-artifact@v4
               with:
                   name: contract-artifacts
 
@@ -185,7 +193,7 @@ jobs:
     #         - run: yarn install --frozen-lockfile
 
     #         - name: Get build artifacts
-    #           uses: actions/download-artifact@v3
+    #           uses: actions/download-artifact@v4
     #           with:
     #               name: contract-artifacts
 
@@ -234,7 +242,7 @@ jobs:
     #         - run: yarn install --frozen-lockfile
 
     #         - name: Get build artifacts
-    #           uses: actions/download-artifact@v3
+    #           uses: actions/download-artifact@v4
     #           with:
     #               name: contract-artifacts
 
@@ -273,7 +281,7 @@ jobs:
     #         - run: yarn install --frozen-lockfile
 
     #         - name: Get build artifacts
-    #           uses: actions/download-artifact@v3
+    #           uses: actions/download-artifact@v4
     #           with:
     #               name: contract-artifacts
 

@@ -2,6 +2,7 @@ const hre = require('hardhat');
 const { ethers } = hre;
 const { expect } = require('chai');
 const { prepare, attach, deploy, deployUpgradeable } = require('../fixture');
+const contractHelpers = require('../../scripts/utils/contractHelpers');
 
 const min = (...args) => args.slice(1).reduce((x, y) => (x.lt(y) ? x : y), args[0]);
 
@@ -49,7 +50,7 @@ describe('VestingWallet', function () {
             }
         );
 
-        await this.token.connect(this.accounts.minter).mint(this.vesting.address, this.amount);
+        await contractHelpers.overwriteUserTokenBalance(this.vesting.address, ethers.utils.parseUnits(this.amount.toString(), 'wei'), this.token.address);
     });
 
     it('rejects zero address for beneficiary', async function () {

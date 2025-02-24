@@ -1,0 +1,12 @@
+{
+	"forta": {
+		"impl": {
+			"address": "0x786e4446bB39F5480310FE98c48d2d5e6129A4cC",
+			"constructor-args": [],
+			"init-args": [],
+			"name": "Forta",
+			"timeout": 1200000,
+			"version": "0.2.0"
+		}
+	}
+}

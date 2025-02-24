@@ -2,6 +2,7 @@ const { ethers, upgrades } = require('hardhat');
 const { expect } = require('chai');
 const { prepare } = require('../fixture');
 const { BigNumber } = require('ethers');
+const contractHelpers = require('../../scripts/utils/contractHelpers');
 
 describe('Scanner Registry (Deprecation and migration)', function () {
     prepare();
@@ -84,7 +85,7 @@ describe('Scanner Registry (Deprecation and migration)', function () {
             await this.subjectGateway.connect(this.accounts.admin).setStakeSubject(0, this.scanners.address);
             await this.scanners.connect(this.accounts.manager).setStakeThreshold({ min: '0', max: '500', activated: true }, chainId);
             await this.scannerPools.connect(this.accounts.manager).setManagedStakeThreshold({ min: '0', max: '500', activated: true }, chainId);
-            await this.token.connect(this.accounts.minter).mint(this.accounts.user1.address, ethers.utils.parseEther('10000'));
+            await contractHelpers.overwriteUserTokenBalance(this.accounts.user1.address, ethers.utils.parseEther('10000'), this.token.address);
             await this.token.connect(this.accounts.user1).approve(this.staking.address, ethers.constants.MaxUint256);
 
             SCANNERS = [this.accounts.scanner, this.accounts.user1, this.accounts.user2, this.accounts.user3, this.accounts.other];

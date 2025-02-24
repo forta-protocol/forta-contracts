@@ -8,15 +8,10 @@ import "./FortaCommon.sol";
 /**
  * This version of the Forta token is living on the root (or parent) chain. That would be:
  * - Mainnet for production
- * - Goerli for testing
- *
- * In addition to all the common forta features, the version is mintable by a specific role.
+ * - Sepolia for testing
  */
 contract Forta is FortaCommon {
-    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     uint256 public constant SUPPLY = 1000000000e18;
-
-    error MintingMoreThanSupply();
 
     /**
      * @notice Initializer method, access point to initialize inheritance tree.
@@ -24,13 +19,6 @@ contract Forta is FortaCommon {
      */
     function initialize(address admin) public initializer {
         __FortaCommon_init(admin);
-        _setRoleAdmin(MINTER_ROLE, ADMIN_ROLE);
-    }
-
-    /// Allow MINTER_ROLE to mint new tokens
-    function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {
-        if (amount + totalSupply() > SUPPLY) revert MintingMoreThanSupply();
-        _mint(to, amount);
     }
 
     /**
@@ -40,7 +28,7 @@ contract Forta is FortaCommon {
      * @return version of FORT deployed in L1
      */
     function version() external pure virtual override returns(string memory) {
-        return "0.2.0";
+        return "0.2.1";
     }
 
     uint256[50] private __gap; 

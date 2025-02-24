@@ -3,6 +3,7 @@ const { parseEther, id } = ethers.utils;
 const { expect } = require('chai');
 const { prepare } = require('../fixture');
 const { BigNumber } = require('ethers');
+const contractHelpers = require('../../scripts/utils/contractHelpers');
 
 const subjects = [
     { id: '1', type: 2 }, // ScannerPools id, ScannerPool type
@@ -59,9 +60,9 @@ describe('Slashing Proposals', function () {
         await this.access.connect(this.accounts.admin).grantRole(this.roles.SLASHING_ARBITER, this.accounts.user3.address);
         await this.access.connect(this.accounts.admin).grantRole(this.roles.SLASHER, this.accounts.admin.address);
 
-        await this.token.connect(this.accounts.minter).mint(this.accounts.user1.address, parseEther('100000'));
-        await this.token.connect(this.accounts.minter).mint(this.accounts.user2.address, parseEther('100000'));
-        await this.token.connect(this.accounts.minter).mint(this.accounts.user3.address, parseEther('100000'));
+        await contractHelpers.overwriteUserTokenBalance(this.accounts.user1.address, parseEther('100000'), this.token.address);
+        await contractHelpers.overwriteUserTokenBalance(this.accounts.user2.address, parseEther('100000'), this.token.address);
+        await contractHelpers.overwriteUserTokenBalance(this.accounts.user3.address, parseEther('100000'), this.token.address);
 
         await this.token.connect(this.accounts.user1).approve(this.slashing.address, ethers.constants.MaxUint256);
         await this.token.connect(this.accounts.user2).approve(this.slashing.address, ethers.constants.MaxUint256);

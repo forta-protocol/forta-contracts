@@ -1,0 +1,12 @@
+{
+    "Forta": {
+        "impl": {
+            "opts": {
+                "unsafe-allow": [
+                    "delegatecall"
+                ],
+                "constructor-args": []
+            }
+        }
+    }
+}
